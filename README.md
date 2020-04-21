@@ -1,14 +1,10 @@
-# merit-front
+# merit-back
 
--Desenvolvido em nodejs + express
+API
 
--Deploy e publicação HEROKU: https://merit-front.herokuapp.com/  e video demonstracao: https://www.youtube.com/watch?v=w9f_JXPogSM&t=123s
+-Desenvolvido em nodejs + express + axios
 
--Estilo css com framework bootstrap
-
--Sistema de login utilizando oauth passport com estrategia github
-
--Consumo da API CoinCap para fornecer dados de mercado de criptomoeda : https://api.coincap.io/v2/markets
+-Deploy e publicação HEROKU: https://merit-back.herokuapp.com/
 
 -Integração com a SDK Google Firebase para gerenciamento de notificações cloud-messaging
 

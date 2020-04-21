@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Merit-Coin</title>
+<meta charset="UTF-8">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Merit-Coin</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/profile">Profile</a></li>
+      <li class="active"><a href="/saldo">Saldo</a></li>
+      <li><a href="/deposito">Depósito</a></li>
+      <li><a href="/retirada">Retirada</a></li>
+      <li><a href="/resgate">Resgate</a></li>
+      <li><a href="/sobre">Sobre</a></li>      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>    
+  </div>
+</nav>  
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet"/>
+
+<table data-toggle="table" data-url="https://api.coincap.io/v2/markets" data-sort-name="priceUsd" data-pagination="true" data-search="true">
+<thead> 
+<tr> 
+<th data-field="baseId" data-sortable="true"> Name </th> 
+<th data-field="priceUsd" data-sortable="true"> Price </th> 
+<th data-field="volumeUsd24Hr" data-sortable="true"> Volume24H </th> 
+<th data-field="quoteId" data-sortable="true"> Description </th> 
+</tr>
+</thead>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+
+<style>
+		body,
+		html {
+			background: #dbdbdb !important;
+		}
+</style>
+</body>
+</html>

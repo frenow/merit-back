@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+
+<title>Merit-Coin</title>
+<meta charset="UTF-8">
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<link rel='manifest' href='manifest.json'>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Merit-Coin</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Profile</a></li>
+      <li><a href="/saldo">Saldo</a></li>
+      <li><a href="/deposito">Depósito</a></li>
+      <li><a href="/retirada">Retirada</a></li>
+      <li><a href="/resgate">Resgate</a></li>
+      <li><a href="/sobre">Sobre</a></li>      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>    
+  </div>
+</nav>
+
+<h1>Ola, {{profile.displayName}}</h1>
+<h2>ID: {{profile.id}}</h2>
+
+	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.3/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.3/firebase-database.js"></script>
+
+
+<script>
+	  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyATU8O3NgExE_h6jrWjYpK2s47-YV-m1rQ",
+    authDomain: "merit-95628.firebaseapp.com",
+    databaseURL: "https://merit-95628.firebaseio.com",
+    projectId: "merit-95628",
+    storageBucket: "merit-95628.appspot.com",
+    messagingSenderId: "609922366963",
+    appId: "1:609922366963:web:23db734e12690b8970e686"
+  };
+  // Initialize Firebase
+  //if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+  //}
+
+  const messaging = firebase.messaging();
+  messaging.requestPermission().then(function() {
+        console.log('Notification permission granted.');
+        return messaging.getToken();
+      })
+      .then(function(token) {
+          console.log('TOKEN: ' + token);
+
+          var database = firebase.database();
+  	      firebase.database().ref('usuario/'+{{profile.id}}).set({
+		      token: token,
+          balance: 0
+    		});
+        
+	   })
+      .catch(function(err) {
+        console.log('Unable to get permission to notify.', err);
+    });      
+
+ </script>	
+
+<img src="" alt="">
+<style>
+		body,
+		html {
+			background: #dbdbdb !important;
+		}
+</style>
+</body>
+</html>

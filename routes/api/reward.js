@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
-var axios = require('axios');
 
 /* GET home page. */
 router.post('/reward', async function(req, res, next) {

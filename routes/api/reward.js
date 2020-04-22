@@ -27,13 +27,21 @@ router.post('/reward', async function(req, res, next) {
       
       //consulta     
       const Snapshot = await userReference.once("value");
-      balance = Snapshot.val().balance;
-      
+      if (Snapshot.val()) {
+        balance = Snapshot.val().balance;
+      } else { balance = 0; }
+
       //somatorio
       new_balance = balance + value;
 
       //gravar novo valor
       await userReference.update({balance: new_balance});
+
+      //gravar historico 
+      const currentdate = new Date;
+      console.log(currentdate.toLocaleString());
+      userReference = firebase.database().ref("/user/"+id+'/history/');
+      await userReference.push({date: currentdate.toLocaleString(), origin: 'money safe', destination: id, note: 'Resgate mensal', value: value});
 
       res.json({
         message: 'Success',

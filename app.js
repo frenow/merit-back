@@ -19,6 +19,7 @@ const deposit = require('./routes/api/deposit');
 const balance = require('./routes/api/balance');
 const withdraw = require('./routes/api/withdraw');
 const reward = require('./routes/api/reward');
+const history = require('./routes/api/history');
 
 var app = express();
 require('./configs/github.strategy');
@@ -52,6 +53,7 @@ app.use('/api', deposit);
 app.use('/api', balance);
 app.use('/api', withdraw);
 app.use('/api', reward);
+app.use('/api', history);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

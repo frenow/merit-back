@@ -2,14 +2,14 @@
 # API Backend
 
 ![enter image description here](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png)
--Desenvolvido em nodejs + express
+- Desenvolvido em nodejs + express
 ![enter image description here](https://miro.medium.com/max/3600/1*fIjRtO5P8zc3pjs0E5hYkw.png)
--Deploy e publicação HEROKU: https://merit-back.herokuapp.com/
+- Deploy e publicação HEROKU: https://merit-back.herokuapp.com/
 
 ![enter image description here](https://firebase.google.com/images/brand-guidelines/logo-built_white.png?hl=pt)
--Integração com a SDK Google Firebase para gerenciamento de notificações cloud-messaging;
--Firebase Realtime Database para armazenamento e sincronismo de dados
--Firebase authentication
+- Integração com a SDK Google Firebase para gerenciamento de notificações cloud-messaging;
+- Firebase Realtime Database para armazenamento e sincronismo de dados
+- Firebase authentication
 
 # Exemplos da API
 - Consulta Histórico de movimentações geral

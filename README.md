@@ -1,4 +1,4 @@
-# Merit Coin
+# Merit Coin: Projetos Integrados de Aplicações (PIA) Pós-Graduação Desenvolvimento Web Full Stack
 # API Backend
 
 ![enter image description here](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png)

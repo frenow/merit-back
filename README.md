@@ -1,5 +1,6 @@
-# Merit Coin: Projetos Integrados de Aplicações (PIA) Pós-Graduação Desenvolvimento Web Full Stack
-# API Backend
+# Merit Coin: Projetos Integrados de Aplicações (PIA) 
+# Pós-Graduação Desenvolvimento Web Full Stack - Puc Minas
+# Backend
 
 ![enter image description here](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png)
 - Desenvolvido em nodejs + express
@@ -13,12 +14,16 @@
 
 # Exemplos da API
 - Consulta Histórico de movimentações geral
+
 **GET** localhost:3001/api/history
 - Consulta Histórico de movimentações por usuário
+
 **GET** localhost:3001/api/history/66lgpcqVGwWObnzd4UX9Xx1r4uL2
 - Consulta saldo do usuário
+
 **GET** localhost:3001/api/balance/66lgpcqVGwWObnzd4UX9Xx1r4uL2
 - Grava resgate mensal de credito
+
 **POST** localhost:3001/api/reward
 body: {
 {

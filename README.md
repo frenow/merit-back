@@ -32,6 +32,7 @@ body:
 	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
 	"value": 50
 }
+- Grava dados do usuario apos o login
 
 **POST** localhost:3001/api/signin
 body: 
@@ -40,6 +41,7 @@ body:
 	"email": "frenow@gmail.com",
 	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD"
 }
+- Efetua deposito de um usuario para outro
 
 **POST** localhost:3001/api/deposit
 body: 
@@ -50,6 +52,7 @@ body:
 	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
 	"value": 5000
 }
+- Efetua resgate de produtos
 
 **POST** localhost:3001/api/product_reward
 body: 

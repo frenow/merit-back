@@ -25,10 +25,40 @@
 - Grava resgate mensal de credito
 
 **POST** localhost:3001/api/reward
-body: {
+body: 
 {
 	"id": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
 	"email": "frenow@gmail.com",
 	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
 	"value": 50
 }
+
+**POST** localhost:3001/api/signin
+body: 
+{
+	"id": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+	"email": "frenow@gmail.com",
+	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD"
+}
+
+**POST** localhost:3001/api/deposit
+body: 
+{
+	"id_origin": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+	"id_destination": "NrKoogJHBJQyGCWKNQQ1grdSayk1",
+	"email": "frenow@gmail.com",
+	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
+	"value": 5000
+}
+
+**POST** localhost:3001/api/product_reward
+body: 
+{
+	"id": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+	"email": "frenow@gmail.com",
+	"token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
+	"value": 5000
+}
+
+
+

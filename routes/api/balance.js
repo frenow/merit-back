@@ -14,9 +14,14 @@ router.get('/balance/:id', async function(req, res, next) {
 
       var userReference = firebase.database().ref("/user/"+id);
       
-      //consulta     
-      const Snapshot = await userReference.once("value");
-      balance = Snapshot.val().balance;
+      //consulta
+      Snapshot = await userReference.once("value");
+      if (Snapshot.val().balance) {
+        balance = Snapshot.val().balance;
+      } else { 
+        balance = 0;
+        await userReference.update({balance: balance});
+      }
 
       res.json({
         message: 'Success',

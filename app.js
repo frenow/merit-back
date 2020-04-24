@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,9 +9,12 @@ const deposit = require('./routes/api/deposit');
 const balance = require('./routes/api/balance');
 const withdraw = require('./routes/api/withdraw');
 const reward = require('./routes/api/reward');
+const product_reward = require('./routes/api/product_reward');
 const history = require('./routes/api/history');
+const signin = require('./routes/api/signin');
 
 var app = express();
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -22,7 +26,9 @@ app.use('/api', deposit);
 app.use('/api', balance);
 app.use('/api', withdraw);
 app.use('/api', reward);
+app.use('/api', product_reward);
 app.use('/api', history);
+app.use('/api', signin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -16,7 +16,7 @@ router.post('/reward', async function(req, res, next) {
     var balance = 0;
     var new_balance = 0;
 
-      var userReference = firebaseApp.database().ref("/user/"+id);
+      var userReference = firebase.database().ref("/user/"+id);
       
       //consulta     
       const Snapshot = await userReference.once("value");
@@ -25,7 +25,7 @@ router.post('/reward', async function(req, res, next) {
       } else { balance = 0; }
 
       //somatorio
-      new_balance = balance + value;
+      new_balance = balance + parseFloat(value);  
 
       //gravar novo valor
       await userReference.update({balance: new_balance});

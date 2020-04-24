@@ -41,7 +41,7 @@ router.get('/history/:id', async function(req, res, next) {
 
     var obj=[];
 
-    var ref = firebase.database().ref("/user/"+id+"/history/");
+    var ref = firebase.database().ref("/user/"+id+"/history/").orderByChild("date");
     await ref.once("value").then(function(snapshot) {
       snapshot.forEach(function(historySnapshot) {
         
@@ -49,6 +49,31 @@ router.get('/history/:id', async function(req, res, next) {
                   item.key = historySnapshot.key;
                   obj.push(item);
                   //console.log(item);   
+            });
+        });
+
+    res.json({
+      message: 'Success',
+      history: obj,
+  });
+
+});
+
+router.get('/history_deposit/:id', async function(req, res, next) {
+  const id = req.params.id;
+
+    var obj=[];
+
+    var ref = firebase.database().ref("/user/"+id+"/history/").orderByChild("date");
+    await ref.once("value").then(function(snapshot) {
+      snapshot.forEach(function(historySnapshot) {
+        
+                  var item = historySnapshot.val();
+                  if (item.value < 0) {
+                    item.key = historySnapshot.key;
+                    obj.push(item);
+                    //console.log(item);   
+                  }
             });
         });
 

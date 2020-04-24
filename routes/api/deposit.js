@@ -18,12 +18,29 @@ router.post('/deposit', async function(req, res, next) {
   var balance_destination = 0;
   var new_balance_destination = 0;
   const currentdate = new Date;
+  var Snapshot;
 
   var userRefOrigin = firebase.database().ref("/user/"+id_origin);
   var userRefDestination = firebase.database().ref("/user/"+id_destination);
 
+      //verificar se usuario destino existe
+      Snapshot = await userRefDestination.once("value");
+      if (!Snapshot.val()) {
+        console.log('notfound');
+        res.json({
+          message: 'Notfound',
+          id_origin: id_origin,
+          id_destination: id_destination,
+          email: email,
+          token: token,
+          value: value,
+      });
+      return
+      }
+
+
       //consultar se usuario origin possui saldo para fazer o deposito
-      const Snapshot = await userRefOrigin.once("value");
+      Snapshot = await userRefOrigin.once("value");
       if (Snapshot.val()) {
         balance_origin = Snapshot.val().balance;
       } else { balance_origin = 0; }
@@ -31,7 +48,7 @@ router.post('/deposit', async function(req, res, next) {
       if (value > balance_origin) //saldo inferior ao valor de deposito, mensagem de  saldo insuficiente
       {
         res.json({
-          message: 'failure',
+          message: 'Failure',
           id_origin: id_origin,
           id_destination: id_destination,
           email: email,
@@ -43,26 +60,26 @@ router.post('/deposit', async function(req, res, next) {
       {
         
         //subtrair valor do deposito do saldo
-        new_balance_origin = balance_origin - value;        
+        new_balance_origin = balance_origin - parseFloat(value);       
         
         //debitar saldo da carteira de origin
         await userRefOrigin.update({balance: new_balance_origin});
         
         //gravar historico debitando o deposito da carteira de origin
         userRefOrigin = firebase.database().ref("/user/"+id_origin+'/history/');
-        await userRefOrigin.push({date: currentdate.toLocaleString(), origin: id_origin, destination: id_destination, note: 'Deposito feito', value: value});
+        await userRefOrigin.push({date: currentdate.toLocaleString(), origin: id_origin, destination: id_destination, note: 'Deposito feito', value: (value*-1)});
 
 
         // ----------------------------------------------------------------------------------------- //
 
         //consultar saldo usuario destino
-        const Snapshot = await userRefDestination.once("value");
+        Snapshot = await userRefDestination.once("value");
         if (Snapshot.val()) {
          balance_destination = Snapshot.val().balance;
         } else { balance_destination = 0; }
 
        //somar valor do deposito do saldo
-       new_balance_destination = balance_destination + value;  
+       new_balance_destination = balance_destination + parseFloat(value);  
 
         //creditar saldo da carteira de destino
         await userRefDestination.update({balance: new_balance_destination});

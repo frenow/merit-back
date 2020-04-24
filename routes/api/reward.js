@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
+var config = require('../configs/config');
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 
 /* GET home page. */
 router.post('/reward', async function(req, res, next) {
@@ -11,19 +16,7 @@ router.post('/reward', async function(req, res, next) {
     var balance = 0;
     var new_balance = 0;
 
-    var config = {
-        apiKey: "AIzaSyATU8O3NgExE_h6jrWjYpK2s47-YV-m1rQ",
-        authDomain: "merit-95628.firebaseapp.com",
-        databaseURL: "https://merit-95628.firebaseio.com",
-        projectId: "merit-95628",
-        storageBucket: "merit-95628.appspot.com",
-        messagingSenderId: "609922366963",
-        appId: "1:609922366963:web:23db734e12690b8970e686"
-      };
-      if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-      }
-      var userReference = firebase.database().ref("/user/"+id);
+      var userReference = firebaseApp.database().ref("/user/"+id);
       
       //consulta     
       const Snapshot = await userReference.once("value");
@@ -39,7 +32,7 @@ router.post('/reward', async function(req, res, next) {
 
       //gravar historico 
       const currentdate = new Date;
-      console.log(currentdate.toLocaleString());
+      //console.log(currentdate.toLocaleString());
       userReference = firebase.database().ref("/user/"+id+'/history/');
       await userReference.push({date: currentdate.toLocaleString(), origin: 'money safe', destination: id, note: 'Resgate mensal', value: value});
 

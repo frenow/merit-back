@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
 var config = require('../configs/config');
+var axios = require('axios');
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
@@ -87,6 +88,26 @@ router.post('/deposit', async function(req, res, next) {
         //gravar historico creditando o deposito da carteira de destino
         userRefDestination = firebase.database().ref("/user/"+id_destination+'/history/');
         await userRefDestination.push({date: currentdate.toLocaleString(), origin: id_origin, destination: id_destination, note: 'Deposito recebido', value: value});
+
+        //Enviar notificacao  
+        axios(
+        {
+            url: 'https://fcm.googleapis.com/fcm/send',
+            method: 'post',
+            headers: {
+              "Content-Type":"application/json",
+              "Authorization":"key=AAAAjgI0vfM:APA91bGo66e6F7ikV8k4SwfsjSOqIoTZJ7vFek--csDOD6oCXt0chO99UP9sI0v30AYd6HlU_NhipN6UFuu1Wowj1gcAGTgxqLaDatPFC-bvRERnRnW_w0Ed9FQnvKgGDNtCDWJOmJ3e"
+            },
+            data: {
+                "notification": {
+                  "title":"Voce acaba de enviar "+value+" Merit",
+                  "body":"Voce acaba de enviar "+value+" Merit para o usuario "+id_destination,
+                  "click_action": "https://silly-franklin-3c937d.netlify.app/"
+                },
+                "to":token
+              }
+        });
+
 
         res.json({
           message: 'Success',

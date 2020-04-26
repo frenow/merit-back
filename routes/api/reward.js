@@ -49,19 +49,13 @@ router.post('/reward', async function(req, res, next) {
                 },
                 data: {
                     "notification": {
-                      "title":"Voce acaba de receber 10und Merit",
-                      "text":"O usuario 123 enviou 10und Merit para voce.",
-                      "sound":"default"
+                      "title":"Voce acaba de receber "+value+" Merit",
+                      "body":"O usuario money safe enviou "+value+" Merit para voce.",
+                      "click_action": "https://silly-franklin-3c937d.netlify.app/"
                     },
-                    "to":token,
-                    "priority":"high"
+                    "to":token
                   }
-              }
-        ).then((r) => {
-            //console.log(r.data)
-          }).catch((error) => {
-            console.log(error)
-          });
+              });
 
       res.json({
         message: 'Success',

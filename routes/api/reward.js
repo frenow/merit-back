@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
 var config = require('../configs/config');
+var axios = require('axios');
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
@@ -35,6 +36,32 @@ router.post('/reward', async function(req, res, next) {
       //console.log(currentdate.toLocaleString());
       userReference = firebase.database().ref("/user/"+id+'/history/');
       await userReference.push({date: currentdate.toLocaleString(), origin: 'money safe', destination: id, note: 'Resgate mensal', value: value});
+
+
+      //Enviar notificacao  
+      axios(
+            {
+                url: 'https://fcm.googleapis.com/fcm/send',
+                method: 'post',
+                headers: {
+                  "Content-Type":"application/json",
+                  "Authorization":"key=AAAAjgI0vfM:APA91bGo66e6F7ikV8k4SwfsjSOqIoTZJ7vFek--csDOD6oCXt0chO99UP9sI0v30AYd6HlU_NhipN6UFuu1Wowj1gcAGTgxqLaDatPFC-bvRERnRnW_w0Ed9FQnvKgGDNtCDWJOmJ3e"
+                },
+                data: {
+                    "notification": {
+                      "title":"Voce acaba de receber 10und Merit",
+                      "text":"O usuario 123 enviou 10und Merit para voce.",
+                      "sound":"default"
+                    },
+                    "to":token,
+                    "priority":"high"
+                  }
+              }
+        ).then((r) => {
+            //console.log(r.data)
+          }).catch((error) => {
+            console.log(error)
+          });
 
       res.json({
         message: 'Success',

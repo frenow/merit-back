@@ -18,6 +18,7 @@ router.post('/deposit', async function(req, res, next) {
   var new_balance_origin = 0;
   var balance_destination = 0;
   var new_balance_destination = 0;
+  var token_destination = "";
   const currentdate = new Date;
   var Snapshot;
 
@@ -77,6 +78,7 @@ router.post('/deposit', async function(req, res, next) {
         Snapshot = await userRefDestination.once("value");
         if (Snapshot.val()) {
          balance_destination = Snapshot.val().balance;
+         token_destination = Snapshot.val().token;
         } else { balance_destination = 0; }
 
        //somar valor do deposito do saldo
@@ -89,26 +91,45 @@ router.post('/deposit', async function(req, res, next) {
         userRefDestination = firebase.database().ref("/user/"+id_destination+'/history/');
         await userRefDestination.push({date: currentdate.toLocaleString(), origin: id_origin, destination: id_destination, note: 'Deposito recebido', value: value});
 
-        //Enviar notificacao  
+        //Enviar notificacao origem 
         axios(
-        {
-            url: 'https://fcm.googleapis.com/fcm/send',
-            method: 'post',
-            headers: {
-              "Content-Type":"application/json",
-              "Authorization":"key=AAAAjgI0vfM:APA91bGo66e6F7ikV8k4SwfsjSOqIoTZJ7vFek--csDOD6oCXt0chO99UP9sI0v30AYd6HlU_NhipN6UFuu1Wowj1gcAGTgxqLaDatPFC-bvRERnRnW_w0Ed9FQnvKgGDNtCDWJOmJ3e"
-            },
-            data: {
-                "notification": {
-                  "title":"Voce acaba de enviar "+value+" Merit",
-                  "body":"Voce acaba de enviar "+value+" Merit para o usuario "+id_destination,
-                  "click_action": "https://silly-franklin-3c937d.netlify.app/"
-                },
-                "to":token
-              }
-        });
-
-
+          {
+              url: 'https://fcm.googleapis.com/fcm/send',
+              method: 'post',
+              headers: {
+                "Content-Type":"application/json",
+                "Authorization":"key=AAAAjgI0vfM:APA91bGo66e6F7ikV8k4SwfsjSOqIoTZJ7vFek--csDOD6oCXt0chO99UP9sI0v30AYd6HlU_NhipN6UFuu1Wowj1gcAGTgxqLaDatPFC-bvRERnRnW_w0Ed9FQnvKgGDNtCDWJOmJ3e"
+              },
+              data: {
+                  "notification": {
+                    "title":"Voce acaba de enviar "+value+" Merit",
+                    "body":"Voce acaba de enviar "+value+" Merit para o usuario "+id_destination,
+                    "click_action": "https://silly-franklin-3c937d.netlify.app/"
+                  },
+                  "to":token
+                }
+          });
+  
+        //Enviar notificacao destino 
+        axios(
+          {
+              url: 'https://fcm.googleapis.com/fcm/send',
+              method: 'post',
+              headers: {
+                "Content-Type":"application/json",
+                "Authorization":"key=AAAAjgI0vfM:APA91bGo66e6F7ikV8k4SwfsjSOqIoTZJ7vFek--csDOD6oCXt0chO99UP9sI0v30AYd6HlU_NhipN6UFuu1Wowj1gcAGTgxqLaDatPFC-bvRERnRnW_w0Ed9FQnvKgGDNtCDWJOmJ3e"
+              },
+              data: {
+                  "notification": {
+                    "title":"Voce acaba de receber "+value+" Merit",
+                    "body":"Voce acaba de receber "+value+" Merit do usuario "+id_origin,
+                    "click_action": "https://silly-franklin-3c937d.netlify.app/"
+                  },
+                  "to":token_destination
+                }
+          });
+  
+    
         res.json({
           message: 'Success',
           id_origin: id_origin,

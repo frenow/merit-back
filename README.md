@@ -11,6 +11,7 @@
 - Integração com a SDK Google Firebase para gerenciamento de notificações cloud-messaging;
 - Firebase Realtime Database para armazenamento e sincronismo de dados
 - Firebase authentication
+- Firebase push notification para envio de notificacao no browser
 
 # Exemplos da API
 - Consulta Histórico de movimentações geral

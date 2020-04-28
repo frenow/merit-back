@@ -1,0 +1,58 @@
+<html>
+    <header>
+
+    </header>
+    <body>
+        <h1># Exemplos da API</h1>
+        <h3>- Consulta Histórico de movimentações geral</h3>
+        
+        <h3>**GET** localhost:3001/api/history
+        <h3>- Consulta Histórico de movimentações por usuário</h3>
+        
+        <h3>**GET** localhost:3001/api/history/66lgpcqVGwWObnzd4UX9Xx1r4uL2</h3>
+        <h3>- Consulta saldo do usuário</h3>
+        
+        <h3>**GET** localhost:3001/api/balance/66lgpcqVGwWObnzd4UX9Xx1r4uL2</h3>
+        <h3>- Grava resgate mensal de credito</h3>
+        
+        <h3>**POST** localhost:3001/api/reward</h3>
+        <h4>body: 
+        {
+            "id": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+            "email": "frenow@gmail.com",
+            "token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
+            "value": 50
+        }</h4>
+        <h3>- Grava dados do usuario apos o login</h3>
+        
+        <h3>**POST** localhost:3001/api/signin</h3>
+        <h4>body: 
+        {
+            "id": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+            "email": "frenow@gmail.com",
+            "token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD"
+        }</h4>
+        <h3> Efetua deposito de um usuario para outro</h3>
+        
+        <h3>**POST** localhost:3001/api/deposit</h3>
+        <h4>body: 
+        {
+            "id_origin": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+            "id_destination": "NrKoogJHBJQyGCWKNQQ1grdSayk1",
+            "email": "frenow@gmail.com",
+            "token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
+            "value": 5000
+        }</h4>
+        <h3>- Efetua resgate de produtos</h3>
+        
+        <h3>**POST** localhost:3001/api/product_reward</h3>
+        <h4>body: 
+        {
+            "id": "66lgpcqVGwWObnzd4UX9Xx1r4uL2",
+            "email": "frenow@gmail.com",
+            "token": "cq1f4-_QAXlNyfa3wCTNVf:APA91bFL4R5o5bt7-9Zw5CZt0JqhunhtsdXv7o3Hx3Tc_hDUy89OH5osJ8myTIJiC30ym0XLYMKrwv8-tJvndAPCLU7kKSEKskMUq5e4bbBjazVfwSQrHMZjSvgTRN4mlZXkZ84Ox6iD",
+            "value": 5000
+        }</h4>
+                
+    </body>
+</html>

@@ -13,6 +13,8 @@
 - Firebase authentication
 - Firebase push notification para envio de notificacao no browser
 
+# SWAGGER DOC http://localhost:3001/api-docs/
+
 # Exemplos da API
 - Consulta Histórico de movimentações geral
 

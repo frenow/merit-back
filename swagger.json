@@ -1,0 +1,118 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "MERIT Application API",
+      "description": "MERIT Application API Swagger documentaion + Node.js + Express",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3001",
+    "basePath": "/api/",
+    "tags": [
+      {
+        "name": "MERIT API",
+        "description": "API system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/signin": {
+        "post": {
+          "tags": [
+            "signin"
+          ],
+          "description": "Login and create (first time) new user in system",
+          "parameters": [
+            {
+              "name": "signin",
+              "in": "body",
+              "description": "User that we want to Login and create (first time)",
+              "schema": {
+                "$ref": "#/definitions/Signin"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "$ref": "#/definitions/Signin"
+              }
+            }
+          }
+        }
+        },
+      "/balance/{userId}": {
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "ID of user that we want to find balance",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Balance"
+          ],
+          "summary": "Get Balance user with given ID",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "$ref": "#/definitions/Balance"
+              }
+            }
+          }
+        }
+    }
+    },
+    "definitions": {
+      "Signin": {
+        "required": [
+            "id",
+          "email",
+          "token"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Balance": {
+        "required": [
+            "balance"
+        ],
+        "properties": {
+          "balance": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }

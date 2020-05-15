@@ -4,6 +4,8 @@ var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json');
 
 const deposit = require('./routes/api/deposit');
 const balance = require('./routes/api/balance');
@@ -29,6 +31,7 @@ app.use('/api', reward);
 app.use('/api', product_reward);
 app.use('/api', history);
 app.use('/api', signin);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

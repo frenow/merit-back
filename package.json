@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha --timeout 10000"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "cache-polyfill": "^1.0.1",
+    "cha": "^0.2.1",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -19,5 +21,10 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.5.3"
   }
 }

@@ -7,7 +7,7 @@
     "test": "mocha --timeout 10000"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cache-polyfill": "^1.0.1",
     "cha": "^0.2.1",
     "connect-ensure-login": "^0.1.1",
